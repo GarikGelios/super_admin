@@ -1,0 +1,55 @@
+{% extends 'core/index.html' %}
+{% load navigation django_bootstrap5 %}
+
+{% block top_menu %}
+  {% top_navigation users=True %}
+{% endblock %}
+
+{% block content %}
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-md-6">
+        <div class="col-lg-6">
+          {% bootstrap_field form.username %}
+        </div>
+
+        <div class="col-lg-6">
+          {% bootstrap_field form.email %}
+        </div>
+
+        <div class="col-lg-6">
+          {% bootstrap_field form.first_name %}
+        </div>
+
+        <div class="col-lg-6">
+          {% bootstrap_field form.last_name %}
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="col-lg-6">
+          {% bootstrap_field form.password %}
+        </div>
+
+        <div class="col-lg-6">
+          {% bootstrap_field form.is_staff %}
+        </div>
+
+        <div class="col-lg-6">
+          {% bootstrap_field form.is_active %}
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        {% bootstrap_button button_type="submit" content="Submit" %}
+        {% bootstrap_button button_type="reset" content="Cancel" %}
+        <a href="{% url 'admin:users_list' %}" class="btn btn-primary">Back</a>
+      </div>
+    </div>
+   </form>
+{% endblock %}
