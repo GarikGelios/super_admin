@@ -23,3 +23,8 @@ That's it.
 
 Now you could start the server and access the site [admin](http://127.0.0.1:8000/admin/) panel.
 
+
+## Additional materials
+* [bootstrap](https://getbootstrap.com/)
+* [django-bootstrap5](https://django-bootstrap5.readthedocs.io/en/latest/index.html)
+* [bootstrap icons](https://icons.getbootstrap.com/) - click on icon to see how to use it
