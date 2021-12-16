@@ -26,5 +26,7 @@ urlpatterns = [
         success_url='admin:users_list'
     ), name='users_update'),
 
+    path('users/<int:pk>/change_password/', views.change_pasword, name='change_password'),
+
     # Todo: add delete url
 ]
