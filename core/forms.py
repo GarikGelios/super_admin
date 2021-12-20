@@ -2,7 +2,7 @@ from django import forms
 
 from core import models
 
-from django.django.shortcuts import render, redirect
+from django.shortcuts import render, redirect
 
 
 class CreateUserForm(forms.ModelForm):
