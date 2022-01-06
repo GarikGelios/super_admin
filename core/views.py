@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.contrib import messages
 from core import models
 from core.forms import PasswordChangeForm
 
@@ -26,5 +26,6 @@ def change_password(request, pk):
     if request.method == 'POST' and form.is_valid():
         print('valid:', user)
         form.save()
+        messages.success(request, "Password succesfully changed!")
         return redirect('admin:users_update', pk)
     return render(request, 'core/users/change_password.html', locals())
