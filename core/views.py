@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from core import models
-from core.forms import PasswordChangeForm
+from core.forms import PasswordChangeForm, LoginForm
+from django.http import HttpResponse
+from django.contrib.auth import authenticate, login
 
 
 def index(request):
@@ -29,3 +31,20 @@ def change_password(request, pk):
         messages.success(request, "Password succesfully changed!")
         return redirect('admin:users_update', pk)
     return render(request, 'core/users/change_password.html', locals())
+
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(username=cd['username'], password=cd['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponse('Authenticated successfully')
+                else:
+                    return HttpResponse('Invalid login')
+    else:
+        form = LoginForm()
+    return render(request, 'core/users/login.html', {'form': form})

@@ -2,6 +2,7 @@ from django.urls import path
 from core import views, models, forms
 from django.views.generic import ListView, CreateView, UpdateView
 
+
 app_name = 'admin'
 
 urlpatterns = [
@@ -27,6 +28,10 @@ urlpatterns = [
     ), name='users_update'),
 
     path('users/<int:pk>/change_password/', views.change_password, name='change_password'),
+
+    path('users/login/', views.user_login, name='login'),
+
+    #url(r'^login/$', views.user_login, name='login'),
 
     # Todo: add delete url
 ]
