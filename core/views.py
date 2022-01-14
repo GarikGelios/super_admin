@@ -42,7 +42,8 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated successfully')
+                    messages.success(request, "Authentication seccessfully")
+                    return redirect('admin:index')
                 else:
                     return HttpResponse('Invalid login')
     else:
