@@ -4,11 +4,12 @@ from core import models
 from core.forms import PasswordChangeForm, LoginForm
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 
+@login_required()
 def index(request):
     return render(request, 'core/index.html', locals())
-
 
 def change_password(request, pk):
     # Принтуй, что тебе приходит в запросе
@@ -42,7 +43,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    messages.success(request, "Authentication seccessfully")
+                    messages.success(request, "Authenticated successfully")
                     return redirect('admin:index')
                 else:
                     return HttpResponse('Invalid login')

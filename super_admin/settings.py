@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'django_bootstrap5',
 ]
 
@@ -40,6 +39,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'super_admin.urls'
+
+LOGIN_URL='/admin/users/login/'
 
 TEMPLATES = [
     {

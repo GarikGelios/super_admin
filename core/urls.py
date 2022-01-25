@@ -1,6 +1,7 @@
 from django.urls import path
 from core import views, models, forms
 from django.views.generic import ListView, CreateView, UpdateView
+from django.contrib.auth.decorators import login_required
 
 
 app_name = 'admin'
@@ -8,17 +9,17 @@ app_name = 'admin'
 urlpatterns = [
     path('', views.index, name='index'),
 
-    path('users/', ListView.as_view(
+    path('users/', login_required(ListView.as_view(
         model=models.User,
         template_name='core/users/list.html'
-    ), name='users_list'),
+    )), name='users_list'),
 
-    path('users/create/', CreateView.as_view(
+    path('users/create/', login_required(CreateView.as_view(
         model=models.User,
         form_class=forms.CreateUserForm,
         template_name='core/users/create.html',
         success_url='admin:users_list'
-    ), name='users_create'),
+    )), name='users_create'),
 
     path('users/update/<int:pk>/', UpdateView.as_view(
         model=models.User,
