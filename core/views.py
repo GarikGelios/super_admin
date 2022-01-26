@@ -47,9 +47,9 @@ def user_login(request):
                     messages.success(request, "Authenticated successfully")
                     return redirect('admin:index')
                 else:
-                    messages.success(request, "Only admins allowed")
+                    messages.warning(request, "Only admins allowed")
             else:
-                messages.success(request, "You entered invalid username or password")
+                messages.warning(request, "You have entered invalid username or password")
     else:
         form = LoginForm()
     return render(request, 'core/users/login.html', {'form': form})
