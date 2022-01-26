@@ -2,14 +2,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from core import models
 from core.forms import PasswordChangeForm, LoginForm
-from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 @login_required
+@user_passes_test(lambda user: user.is_staff)
 def index(request):
     return render(request, 'core/index.html', locals())
+
 
 def change_password(request, pk):
     # Принтуй, что тебе приходит в запросе
@@ -29,7 +30,7 @@ def change_password(request, pk):
     if request.method == 'POST' and form.is_valid():
         print('valid:', user)
         form.save()
-        messages.success(request, "Password succesfully changed!")
+        messages.success(request, "Password successfully changed!")
         return redirect('admin:users_update', pk)
     return render(request, 'core/users/change_password.html', locals())
 
@@ -40,13 +41,15 @@ def user_login(request):
         if form.is_valid():
             cd = form.cleaned_data
             user = authenticate(username=cd['username'], password=cd['password'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
+            if user is not None and user.is_active:
+                login(request, user)
+                if user.is_staff:
                     messages.success(request, "Authenticated successfully")
                     return redirect('admin:index')
                 else:
-                    return HttpResponse('Invalid login')
+                    messages.success(request, "Only admins allowed")
+            else:
+                messages.success(request, "You entered invalid username or password")
     else:
         form = LoginForm()
     return render(request, 'core/users/login.html', {'form': form})

@@ -18,17 +18,18 @@ urlpatterns = [
         model=models.User,
         form_class=forms.CreateUserForm,
         template_name='core/users/create.html',
-        success_url='admin:users_list'
+        success_url='/admin/users/'
     )), name='users_create'),
 
     path('users/update/<int:pk>/', login_required(UpdateView.as_view(
         model=models.User,
         form_class=forms.UpdateUserForm,
         template_name='core/users/update.html',
-        success_url='admin:users_list'
+        success_url='/admin/users/'
     )), name='users_update'),
 
-    path('users/<int:pk>/change_password/', login_required(views.change_password), name='change_password'),
+    path('users/<int:pk>/change_password/', login_required(views.change_password
+                                                           ), name='change_password'),
 
     path('users/login/', views.user_login, name='login'),
 
