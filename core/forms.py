@@ -71,3 +71,10 @@ class PasswordChangeForm(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+class CreatePostForm(forms.ModelForm):
+
+    class Meta:
+        model = models.Post
+        fields = ('name', 'text')

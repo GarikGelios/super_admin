@@ -35,5 +35,18 @@ urlpatterns = [
 
     #url(r'^login/$', views.user_login, name='login'),
 
+    path('posts/', login_required(ListView.as_view(
+        model=models.Post,
+        template_name='core/posts/list.html'
+    )), name='posts_list'),
+
+
+    path('posts/create/', login_required(CreateView.as_view(
+        model=models.Post,
+        form_class=forms.CreatePostForm,
+        template_name='core/posts/create.html',
+        success_url='/admin/posts/'
+    )), name='posts_create'),
+
     # Todo: add delete url
 ]
