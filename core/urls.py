@@ -48,5 +48,13 @@ urlpatterns = [
         success_url='/admin/posts/'
     )), name='posts_create'),
 
+
+path('posts/update/<int:pk>/', login_required(UpdateView.as_view(
+        model=models.Post,
+        form_class=forms.UpdatePostForm,
+        template_name='core/posts/update.html',
+        success_url='/admin/posts/'
+    )), name='posts_update'),
+
     # Todo: add delete url
 ]

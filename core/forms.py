@@ -77,4 +77,10 @@ class CreatePostForm(forms.ModelForm):
 
     class Meta:
         model = models.Post
-        fields = ('name', 'text')
+        fields = ('name', 'text', 'author')
+
+
+class UpdatePostForm(CreatePostForm):
+
+    class Meta(CreatePostForm.Meta):
+        pass

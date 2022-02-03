@@ -7,7 +7,6 @@
 
 {% block content %}
   <div class="col-lg-12 pb-3">
-    #add_post required!!!!
     <a href="{% url 'admin:posts_create' %}" class="btn btn-primary"><i class="bi bi-plus"></i>Add post</a>
   </div>
 
@@ -37,8 +36,7 @@
             <td>{{ all.author }}</td>
             <td><i class="bi bi-{{ all.is_published|yesno:'check,x' }}"></i></td>
             <td>
-              #update_posts!!!
-              <a href="#"><i class="bi bi-pencil"></i></a>
+              <a href="{% url 'admin:posts_update' all.pk %}"><i class="bi bi-pencil"></i></a>
             </td>
           </tr>
           {% endfor %}

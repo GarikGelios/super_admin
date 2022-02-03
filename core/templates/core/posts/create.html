@@ -11,6 +11,10 @@
     <div class="row">
       <div class="col-md-6">
         <div class="col-lg-6">
+          {% bootstrap_field form.author %}
+        </div>
+
+        <div class="col-lg-6">
           {% bootstrap_field form.name %}
         </div>
 
@@ -20,25 +24,11 @@
 
 
       </div>
-
-      <div class="col-md-6">
-
-
-        <div class="col-lg-6">
-          {% bootstrap_field form.is_staff %}
-        </div>
-
-        <div class="col-lg-6">
-          {% bootstrap_field form.is_active %}
-        </div>
       </div>
-
-
-    </div>
 
     <div class="row">
       <div class="col-md-12">
-        {% bootstrap_button button_type="submit" content="Submit" %}
+        {% bootstrap_button button_type="submit" content="Add post" %}
         {% bootstrap_button button_type="reset" content="Cancel" %}
         <a href="{% url 'admin:users_list' %}" class="btn btn-primary">Back</a>
       </div>
