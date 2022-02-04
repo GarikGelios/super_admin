@@ -1,5 +1,5 @@
 from django.urls import path
-from core import views, models, forms
+from main import views, models
 from django.views.generic import ListView, CreateView, UpdateView
 
 
