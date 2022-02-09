@@ -30,7 +30,7 @@
           <tr>
             <td>{{ all.id }}</td>
             <td>{{ all.name }}</td>
-            <td>{{ all.text|default:'-' }}</td>
+            <td>{{ all.text|default:'-'|truncatechars:70|truncatewords:5 }}</td>
             <td>{{ all.created_at }}</td>
             <td>{{ all.updated_at }}</td>
             <td>{{ all.author }}</td>
