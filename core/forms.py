@@ -83,4 +83,5 @@ class CreatePostForm(forms.ModelForm):
 class UpdatePostForm(CreatePostForm):
 
     class Meta(CreatePostForm.Meta):
-        pass
+        model = models.Post
+        fields = "__all__"

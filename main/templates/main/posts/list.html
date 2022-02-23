@@ -53,13 +53,15 @@
   <div class="container">
   <div class="row row-cols-auto">
     {% for post in object_list%}
-    <div class="col m-5 border rounded-3">
-      <h2>{{ post.name }}</h2>
-      <p>{{ post.text|default:'-'|truncatechars:150|truncatewords:5 }}</p>
-      {{ post.author }}
-      <i>{{ post.created_at }}</i>
-      <br>
-    </div>
+      {% if post.is_published == True %}
+        <div class="col m-5 border rounded-3">
+          <h2>{{ post.name }}</h2>
+          <p>{{ post.text|default:'-'|truncatechars:150|truncatewords:5 }}</p>
+          {{ post.author }}
+          <i>{{ post.created_at }}</i>
+          <br>
+        </div>
+      {% endif %}
     {% endfor %}
   </div>
 </div>
