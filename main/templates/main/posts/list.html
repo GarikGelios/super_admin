@@ -16,7 +16,6 @@
         {# Тут обрати внимание как можно подправить queryset, чтобы он сразу получал только опубликованные записи #}
         {# https://docs.djangoproject.com/en/4.0/topics/class-based-views/generic-display/#viewing-subsets-of-objects #}
         {# Так же хорошо было бы если object_list пуст вывести надпись, типа "Постов нет, иди дальше!" #}
-        {% if post.is_published == True %}
           <div class="col m-5 border rounded-3">
             <h2>{{ post.name }}</h2>
             <p>{{ post.text|default:'-'|truncatechars:150|truncatewords:5 }}</p>
@@ -24,7 +23,6 @@
             <i>{{ post.created_at }}</i>
             <br>
           </div>
-        {% endif %}
       {% endfor %}
     </div>
 {% endblock %}
