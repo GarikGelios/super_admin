@@ -3,5 +3,7 @@ backports.zoneinfo==0.2.1
 beautifulsoup4==4.10.0
 Django==4.0
 django-bootstrap5==21.2
+django-el-pagination==3.3.0
 soupsieve==2.3.1
 sqlparse==0.4.2
+uWSGI==2.0.20
