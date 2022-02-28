@@ -1,5 +1,5 @@
 {% extends 'main/index.html' %}
-{% load static navigation %}
+{% load static navigation el_pagination_tags %}
 
 {% block content %}
     {# Когда ты наследуешься от главного шаблона, в котором создаешь структуру html и джанго блоков #}
@@ -7,6 +7,7 @@
     {# Если у тебя есть блок content, то заполняешь только тот контент, который хочешь увидеть на странице в этом блоке #}
     {# Все остальные менюхи подтянутся, с главного шаблона #}
     {# И да, если писать html теги вне блоков, они не учитываются в текущем шаблоне #}
+    {% paginate object_list %}
     <div class="row row-cols-auto">
       {% for post in object_list%}
         {# Когда ты пишешь иф в шаблоне на проверку опубликована ли статься #}
@@ -25,4 +26,6 @@
           </div>
       {% endfor %}
     </div>
+
+    {% show_pages %}
 {% endblock %}
